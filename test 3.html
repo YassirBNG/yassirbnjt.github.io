@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yassir Bengrain - Digital Marketing Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc; /* A very light gray */
+            color: #334155; /* Slate 700 */
+        }
+        .bg-primary { background-color: #3b82f6; } /* Blue 500 */
+        .text-accent { color: #3b82f6; }
+        .border-accent { border-color: #3b82f6; }
+        .btn-primary {
+            background-color: #3b82f6;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary:hover { 
+            background-color: #2563eb; /* Blue 600 */
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: #3b82f6;
+            border: 1px solid #3b82f6;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #3b82f6;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #3b82f6;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+        .scroll-target {
+            scroll-margin-top: 80px; /* Adjust for sticky header height */
+        }
+        
+        /* Animation styles */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger-animation {
+             transition-delay: var(--stagger-delay, 0s);
+        }
+
+        /* Enhanced Hover Effects */
+        .internship-card, .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .internship-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .project-image-container img {
+            transition: transform 0.4s ease;
+        }
+        .project-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .internship-card ul, .skills-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+         .internship-card ul li, .skills-list li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        .skills-list li i {
+            margin-right: 0.75rem;
+            margin-top: 0.125rem;
+            color: #3b82f6;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+        .lang-switch {
+            transition: color 0.2s ease-in-out;
+        }
+        .lang-switch.active {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-40 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-accent" data-lang-key="nav_home">Yassir Bengrain</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#internships" class="text-slate-600 hover:text-accent transition-colors" data-lang-key="nav_internships">Internships</a>
+                <a href="#projects" class="text-slate-600 hover:text-accent transition-colors" data-lang-key="nav_projects">Projects</a>
+                <a href="#skills" class="text-slate-600 hover:text-accent transition-colors" data-lang-key="nav_skills">Skills</a>
+                <a href="#contact" class="text-slate-600 hover:text-accent transition-colors" data-lang-key="nav_contact">Contact</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-4">
+                <div id="lang-switcher-desktop" class="flex items-center space-x-2 text-sm text-slate-500">
+                    <button class="lang-switch" data-lang="en">EN</button>
+                    <span>|</span>
+                    <button class="lang-switch" data-lang="fr">FR</button>
+                    <span>|</span>
+                    <button class="lang-switch" data-lang="de">DE</button>
+                </div>
+                <a href="./Yassir bengrain cv 2025.pdf" download="Yassir Bengrain CV.pdf" class="btn-secondary py-2 px-4 rounded-full text-sm" data-lang-key="nav_cv">Download CV</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-slate-700">
+                <i data-lucide="menu"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+            <a href="#internships" class="block py-3 px-6 text-slate-600 hover:bg-slate-50 hover:text-accent" data-lang-key="nav_internships">Internships</a>
+            <a href="#projects" class="block py-3 px-6 text-slate-600 hover:bg-slate-50 hover:text-accent" data-lang-key="nav_projects">Projects</a>
+            <a href="#skills" class="block py-3 px-6 text-slate-600 hover:bg-slate-50 hover:text-accent" data-lang-key="nav_skills">Skills</a>
+            <a href="#contact" class="block py-3 px-6 text-slate-600 hover:bg-slate-50 hover:text-accent" data-lang-key="nav_contact">Contact</a>
+            <div class="p-4 border-t">
+                <div id="lang-switcher-mobile" class="flex justify-center items-center space-x-4 text-slate-500 mb-4">
+                    <button class="lang-switch" data-lang="en">English</button>
+                    <button class="lang-switch" data-lang="fr">Français</button>
+                    <button class="lang-switch" data-lang="de">Deutsch</button>
+                </div>
+                <a href="./Yassir bengrain cv 2025.pdf" download="Yassir Bengrain CV.pdf" class="w-full text-center block btn-secondary py-2 px-4 rounded-full text-sm" data-lang-key="nav_cv">Download CV</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative bg-white min-h-[85vh] flex items-center py-20 md:py-0">
+            <div class="absolute inset-0 bg-slate-50 opacity-50"></div>
+            <div class="container mx-auto px-6 z-10">
+                <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+                    <div class="text-center md:text-left md:w-1/2 lg:w-3/5">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 leading-tight mb-4 animate-slide-in">
+                            Yassir Bengrain
+                        </h1>
+                        <p class="text-lg md:text-xl text-accent font-semibold mb-4 animate-slide-in" style="--stagger-delay: 150ms;" data-lang-key="hero_title">Digital Marketing Graduate | Passionate about SEO, Content Creation & Social Media Strategy</p>
+                        <p class="text-slate-600 text-base md:text-lg mb-8 animate-slide-in" style="--stagger-delay: 300ms;" data-lang-key="hero_tagline">"Bringing creative ideas to life through data-driven marketing."</p>
+                        <div class="flex justify-center md:justify-start space-x-4 animate-slide-in" style="--stagger-delay: 450ms;">
+                            <a href="#projects" class="btn-primary py-3 px-8 rounded-full font-semibold" data-lang-key="hero_cta_work">View My Work</a>
+                            <a href="#contact" class="btn-secondary py-3 px-8 rounded-full font-semibold" data-lang-key="hero_cta_contact">Contact Me</a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 lg:w-2/5 flex justify-center">
+                        <div class="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl bg-slate-200">
+                             <img src="https://i.imgur.com/7urNXvA.png" alt="Yassir Bengrain" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Internships Section -->
+        <section id="internships" class="scroll-target py-20 md:py-28 bg-slate-50">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title text-3xl font-bold text-center text-slate-800 mb-12 fade-in-section">Internships</h2>
+                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Internship 1 -->
+                    <div class="internship-card bg-white p-8 rounded-xl shadow-md flex flex-col fade-in-section stagger-animation">
+                        <div class="flex items-center mb-6">
+                            <img src="https://i.imgur.com/VyZRCLs.png" alt="CIEMG Logo" class="h-12 mr-4 object-contain">
+                            <h3 class="text-xl font-bold text-slate-800" data-lang-key="internship1_title">CIEMG</h3>
+                        </div>
+                        <div class="text-slate-600 text-sm flex-grow" data-lang-key="internship1_desc"></div>
+                    </div>
+                    <!-- Internship 2 -->
+                    <div class="internship-card bg-white p-8 rounded-xl shadow-md flex flex-col fade-in-section stagger-animation" style="--stagger-delay: 200ms;">
+                        <div class="flex items-center mb-6">
+                            <img src="https://i.imgur.com/7tGDM1v.png" alt="Barid Al Maghrib Logo" class="h-12 mr-4 object-contain">
+                            <h3 class="text-xl font-bold text-slate-800" data-lang-key="internship2_title">Barid Al Maghrib</h3>
+                        </div>
+                        <div class="text-slate-600 text-sm flex-grow" data-lang-key="internship2_desc"></div>
+                    </div>
+                    <!-- Internship 3 -->
+                    <div class="internship-card bg-white p-8 rounded-xl shadow-md flex flex-col fade-in-section stagger-animation" style="--stagger-delay: 400ms;">
+                        <div class="flex items-center mb-6">
+                            <img src="https://i.imgur.com/dH53Icx.png" alt="Ouazni et Fils S.A.R.L Logo" class="h-12 mr-4 object-contain">
+                            <h3 class="text-xl font-bold text-slate-800" data-lang-key="internship3_title">Ouazni et Fils S.A.R.L</h3>
+                        </div>
+                        <div class="text-slate-600 text-sm flex-grow" data-lang-key="internship3_desc"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="scroll-target py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6 fade-in-section">
+                <h2 class="section-title text-3xl font-bold text-center text-slate-800 mb-12" data-lang-key="projects_title">Highlight Project</h2>
+                <div class="bg-slate-50 rounded-xl shadow-lg overflow-hidden p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2" data-lang-key="project_title">Barid Al Maghrib - Le Professeur</h3>
+                            <p class="text-slate-600 leading-relaxed" data-lang-key="project_desc">A digital educational series aimed at simplifying postal services for clients. My role: script writing, concept adaptation, and visual coordination.</p>
+                        </div>
+                        <div class="md:w-1/2 grid grid-cols-2 gap-4">
+                            <div class="project-image-container rounded-lg shadow-md overflow-hidden"><img src="https://i.imgur.com/6GkPc3h.png" alt="Project Mockup 1" class="w-full h-full object-contain"></div>
+                            <div class="project-image-container rounded-lg shadow-md overflow-hidden mt-4"><img src="https://i.imgur.com/yg9QXwu.png" alt="Project Mockup 2" class="w-full h-full object-contain"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="scroll-target py-20 md:py-28 bg-slate-50">
+            <div class="container mx-auto px-6 fade-in-section">
+                <h2 class="section-title text-3xl font-bold text-center text-slate-800 mb-12" data-lang-key="skills_title">Skills & Languages</h2>
+                <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8">
+                    <div class="fade-in-section stagger-animation" data-lang-key="skills_digital"></div>
+                    <div class="fade-in-section stagger-animation" style="--stagger-delay: 200ms;" data-lang-key="skills_professional"></div>
+                    <div class="fade-in-section stagger-animation" style="--stagger-delay: 400ms;" data-lang-key="skills_software"></div>
+                </div>
+                <div class="max-w-6xl mx-auto mt-12 fade-in-section" style="--stagger-delay: 600ms;">
+                     <div data-lang-key="skills_languages"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="scroll-target py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6 text-center fade-in-section">
+                <h2 class="section-title text-3xl font-bold text-slate-800 mb-4" data-lang-key="contact_title">Get In Touch</h2>
+                <p class="max-w-2xl mx-auto text-slate-600 mb-12" data-lang-key="contact_subtitle">Have a project in mind or just want to connect? Feel free to send me a message.</p>
+                <form action="https://formspree.io/f/mldnvanj" method="POST" class="max-w-xl mx-auto space-y-6 text-left">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-slate-700" data-lang-key="form_name">Name</label>
+                        <input type="text" name="name" id="name" required class="mt-1 block w-full px-4 py-3 border-slate-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-700" data-lang-key="form_email">Email</label>
+                        <input type="email" name="email" id="email" required class="mt-1 block w-full px-4 py-3 border-slate-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-slate-700" data-lang-key="form_message">Message</label>
+                        <textarea name="message" id="message" rows="4" required class="mt-1 block w-full px-4 py-3 border-slate-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn-primary py-3 px-10 rounded-full font-semibold" data-lang-key="form_submit">Send Message</button>
+                    </div>
+                </form>
+                <div class="mt-16 flex justify-center space-x-6">
+                    <a href="https://www.linkedin.com/in/yassir-bengrain-368822269" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-accent transition-colors"><i data-lucide="linkedin" class="w-7 h-7"></i></a>
+                    <a href="mailto:yassir.bengrain@gmail.com" class="text-slate-500 hover:text-accent transition-colors"><i data-lucide="mail" class="w-7 h-7"></i></a>
+                    <a href="tel:+212660310577" class="text-slate-500 hover:text-accent transition-colors"><i data-lucide="phone" class="w-7 h-7"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-400 py-8">
+        <div class="container mx-auto px-6 text-center text-sm">
+            <p>&copy; <span id="year"></span> Yassir Bengrain. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- DATA FOR BILINGUAL CONTENT ---
+        const translations = {
+            en: {
+                nav_home: "Yassir Bengrain",
+                nav_internships: "Internships",
+                nav_projects: "Projects",
+                nav_skills: "Skills",
+                nav_contact: "Contact",
+                nav_cv: "Download CV",
+                hero_title: "Digital Marketing Graduate | Passionate about SEO, Content Creation & Social Media Strategy",
+                hero_tagline: "\"Bringing creative ideas to life through data-driven marketing.\"",
+                hero_cta_work: "View My Work",
+                hero_cta_contact: "Contact Me",
+                internships_title: "Internships",
+                internship1_title: "CIEMG Engineering and Expertise",
+                internship1_desc: `<strong class="block mb-2">Role:</strong> Intern — Insurance Expertise Support<br><strong class="block mt-4 mb-2">Tasks:</strong><ul><li>Participated in field missions alongside senior experts to assess damage.</li><li>Drafted detailed expertise reports for individual and corporate clients.</li><li>Contributed to preparing documentation for insurance companies.</li><li>Assisted in updating case files to meet legal requirements.</li></ul><strong class="block mt-4 mb-2">Added value:</strong> Strengthened skills in analytical thinking, precision writing, and professional communication.`,
+                internship2_title: "Barid Al Maghrib",
+                internship2_desc: `<strong class="block mb-2">Role:</strong> Intern — Digital Marketing and Communications Support<br><strong class="block mt-4 mb-2">Tasks:</strong><ul><li>Co-created and scripted episodes for “Le Professeur” educational series.</li><li>Designed social media content ideas aligned with the brand’s new visual identity.</li><li>Adapted the new graphic charter for business cards and flyers.</li><li>Proposed recommendations to improve the digital customer journey.</li></ul><strong class="block mt-4 mb-2">Added value:</strong> Enhanced creative writing and storytelling skills for digital formats.`,
+                internship3_title: "Ouazni et Fils S.A.R.L",
+                internship3_desc: `<strong class="block mb-2">Role:</strong> Intern — Sales and Customer Service Assistant<br><strong class="block mt-4 mb-2">Tasks:</strong><ul><li>Guided customers in selecting suitable tiles and sanitary equipment.</li><li>Helped maintain the showroom's display to highlight products.</li><li>Observed and learned sales negotiation techniques from senior staff.</li><li>Provided basic information about product features and maintenance.</li></ul><strong class="block mt-4 mb-2">Added value:</strong> Developed interpersonal and customer service skills with diverse clients.`,
+                projects_title: "Highlight Project",
+                project_title: "Barid Al Maghrib - Le Professeur",
+                project_desc: "A digital educational series aimed at simplifying postal services for clients. My role: script writing, concept adaptation, and visual coordination.",
+                skills_title: "Skills & Languages",
+                skills_digital: `<h3 class="text-xl font-semibold text-slate-800 mb-4">Digital Marketing</h3><ul class="space-y-3 text-slate-600 skills-list"><li><i data-lucide="megaphone" class="w-4 h-4"></i>Social Media Content Creation</li><li><i data-lucide="file-text" class="w-4 h-4"></i>Scriptwriting for digital campaigns</li><li><i data-lucide="search" class="w-4 h-4"></i>SEO Basics (on-page, keywords)</li><li><i data-lucide="bar-chart-2" class="w-4 h-4"></i>Google Analytics & Social Insights</li><li><i data-lucide="gem" class="w-4 h-4"></i>Brand identity adaptation</li></ul>`,
+                skills_professional: `<h3 class="text-xl font-semibold text-slate-800 mb-4">Professional Skills</h3><ul class="space-y-3 text-slate-600 skills-list"><li><i data-lucide="users" class="w-4 h-4"></i>Customer Advising & Service</li><li><i data-lucide="message-circle" class="w-4 h-4"></i>B2B & B2C Communication</li><li><i data-lucide="users-2" class="w-4 h-4"></i>Team Collaboration</li><li><i data-lucide="brain-circuit" class="w-4 h-4"></i>Analytical Thinking</li><li><i data-lucide="pen-square" class="w-4 h-4"></i>Technical Writing</li><li><i data-lucide="lightbulb" class="w-4 h-4"></i>Creative Problem Solving</li></ul>`,
+                skills_software: `<h3 class="text-xl font-semibold text-slate-800 mb-4">Tools & Software</h3><ul class="space-y-3 text-slate-600 skills-list"><li><i data-lucide="file-spreadsheet" class="w-4 h-4"></i>Microsoft Office Suite</li><li><i data-lucide="palette" class="w-4 h-4"></i>Canva</li><li><i data-lucide="layout-template" class="w-4 h-4"></i>WordPress (Basics)</li><li><i data-lucide="figma" class="w-4 h-4"></i>Figma (Basics)</li><li><i data-lucide="database" class="w-4 h-4"></i>NVivo (Basics)</li><li><i data-lucide="image" class="w-4 h-4"></i>Photoshop (Basics)</li><li><i data-lucide="camera" class="w-4 h-4"></i>Lightroom (Basics)</li><li><i data-lucide="video" class="w-4 h-4"></i>CapCut (Basics)</li></ul>`,
+                skills_languages: `<h3 class="text-xl font-semibold text-slate-800 mb-4 text-center">Languages</h3><div class="flex justify-center gap-6 md:gap-8 text-center"><div><p class="font-bold text-lg text-accent">Arabic</p><p class="text-sm text-slate-500">C2</p></div><div><p class="font-bold text-lg text-accent">French</p><p class="text-sm text-slate-500">C1</p></div><div><p class="font-bold text-lg text-accent">English</p><p class="text-sm text-slate-500">C1</p></div><div><p class="font-bold text-lg text-accent">German</p><p class="text-sm text-slate-500">B2</p></div></div>`,
+                contact_title: "Get In Touch",
+                contact_subtitle: "Have a project in mind or just want to connect? Feel free to send me a message.",
+                form_name: "Name",
+                form_email: "Email",
+                form_message: "Message",
+                form_submit: "Send Message",
+            },
+            fr: {
+                nav_home: "Yassir Bengrain",
+                nav_internships: "Stages",
+                nav_projects: "Projets",
+                nav_skills: "Compétences",
+                nav_contact: "Contact",
+                nav_cv: "Télécharger le CV",
+                hero_title: "Diplômé en Marketing Digital | Passionné par le SEO, la Création de Contenu & la Stratégie Social Media",
+                hero_tagline: "\"Donner vie aux idées créatives grâce au marketing axé sur les données.\"",
+                hero_cta_work: "Voir mes projets",
+                hero_cta_contact: "Contactez-moi",
+                internships_title: "Stages",
+                internship1_title: "Cabinet d’ingénierie et d’expertise CIEMG",
+                internship1_desc: `<strong class="block mb-2">Rôle :</strong> Stagiaire — Support à l'Expertise en Assurance<br><strong class="block mt-4 mb-2">Tâches :</strong><ul><li>Participé à des missions sur le terrain aux côtés d'experts seniors pour évaluer les dommages.</li><li>Rédigé des rapports d'expertise détaillés pour les clients particuliers et professionnels.</li><li>Contribué à la préparation de la documentation pour les compagnies d'assurance.</li><li>Assisté à la mise à jour des dossiers pour répondre aux exigences légales.</li></ul><strong class="block mt-4 mb-2">Valeur ajoutée :</strong> Renforcement des compétences en pensée analytique, rédaction de précision et communication professionnelle.`,
+                internship2_title: "Barid Al Maghrib",
+                internship2_desc: `<strong class="block mb-2">Rôle :</strong> Stagiaire — Support en Marketing Digital et Communication<br><strong class="block mt-4 mb-2">Tâches :</strong><ul><li>Co-créé et scénarisé des épisodes pour la série éducative « Le Professeur ».</li><li>Conçu des idées de contenu pour les réseaux sociaux alignées sur la nouvelle identité visuelle.</li><li>Adapté la nouvelle charte graphique pour les cartes de visite et flyers.</li><li>Proposé des recommandations pour améliorer le parcours client digital.</li></ul><strong class="block mt-4 mb-2">Valeur ajoutée :</strong> Amélioration des compétences en rédaction créative et storytelling pour les formats digitaux.`,
+                internship3_title: "Ouazni et Fils S.A.R.L",
+                internship3_desc: `<strong class="block mb-2">Rôle :</strong> Stagiaire — Assistant Commercial et Service Client<br><strong class="block mt-4 mb-2">Tâches :</strong><ul><li>Guidé les clients dans le choix de carrelage et d'équipements sanitaires.</li><li>Aidé à maintenir la présentation du showroom pour mettre en valeur les produits.</li><li>Observé et appris les techniques de négociation commerciale du personnel senior.</li><li>Fourni des informations de base sur les caractéristiques et l'entretien des produits.</li></ul><strong class="block mt-4 mb-2">Valeur ajoutée :</strong> Développement des compétences interpersonnelles et de service client avec une clientèle variée.`,
+                projects_title: "Projet Phare",
+                project_title: "Barid Al Maghrib - Le Professeur",
+                project_desc: "Une série éducative digitale visant à simplifier les services postaux pour les clients. Mon rôle : rédaction de scripts, adaptation du concept et coordination visuelle.",
+                skills_title: "Compétences & Langues",
+                skills_digital: `<h3 class="text-xl font-semibold text-slate-800 mb-4">Marketing Digital</h3><ul class="space-y-3 text-slate-600 skills-list"><li><i data-lucide="megaphone" class="w-4 h-4"></i>Création de contenu pour les réseaux sociaux</li><li><i data-lucide="file-text" class="w-4 h-4"></i>Scénarisation pour campagnes digitales</li><li><i data-lucide="search" class="w-4 h-4"></i>Bases du SEO (on-page, mots-clés)</li><li><i data-lucide="bar-chart-2" class="w-4 h-4"></i>Google Analytics & Insights Sociaux</li><li><i data-lucide="gem" class="w-4 h-4"></i>Adaptation de l'identité de marque</li></ul>`,
+                skills_professional: `<h3 class="text-xl font-semibold text-slate-800 mb-4">Compétences Professionnelles</h3><ul class="space-y-3 text-slate-600 skills-list"><li><i data-lucide="users" class="w-4 h-4"></i>Conseil et service client</li><li><i data-lucide="message-circle" class="w-4 h-4"></i>Communication B2B & B2C</li><li><i data-lucide="users-2" class="w-4 h-4"></i>Collaboration en équipe</li><li><i data-lucide="brain-circuit" class="w-4 h-4"></i>Pensée analytique</li><li><i data-lucide="pen-square" class="w-4 h-4"></i>Rédaction technique</li><li><i data-lucide="lightbulb" class="w-4 h-4"></i>Résolution créative de problèmes</li></ul>`,
+                skills_software: `<h3 class="text-xl font-semibold text-slate-800 mb-4">Outils & Logiciels</h3><ul class="space-y-3 text-slate-600 skills-list"><li><i data-lucide="file-spreadsheet" class="w-4 h-4"></i>Suite Microsoft Office</li><li><i data-lucide="palette" class="w-4 h-4"></i>Canva</li><li><i data-lucide="layout-template" class="w-4 h-4"></i>WordPress (Bases)</li><li><i data-lucide="figma" class="w-4 h-4"></i>Figma (Bases)</li><li><i data-lucide="database" class="w-4 h-4"></i>NVivo (Bases)</li><li><i data-lucide="image" class="w-4 h-4"></i>Photoshop (Bases)</li><li><i data-lucide="camera" class="w-4 h-4"></i>Lightroom (Bases)</li><li><i data-lucide="video" class="w-4 h-4"></i>CapCut (Bases)</li></ul>`,
+                skills_languages: `<h3 class="text-xl font-semibold text-slate-800 mb-4 text-center">Langues</h3><div class="flex justify-center gap-6 md:gap-8 text-center"><div><p class="font-bold text-lg text-accent">Arabe</p><p class="text-sm text-slate-500">C2</p></div><div><p class="font-bold text-lg text-accent">Français</p><p class="text-sm text-slate-500">C1</p></div><div><p class="font-bold text-lg text-accent">Anglais</p><p class="text-sm text-slate-500">C1</p></div><div><p class="font-bold text-lg text-accent">Allemand</p><p class="text-sm text-slate-500">B2</p></div></div>`,
+                contact_title: "Contactez-moi",
+                contact_subtitle: "Vous avez un projet en tête ou souhaitez simplement échanger ? N'hésitez pas à m'envoyer un message.",
+                form_name: "Nom",
+                form_email: "Email",
+                form_message: "Message",
+                form_submit: "Envoyer le message",
+            },
+            de: {
+                nav_home: "Yassir Bengrain",
+                nav_internships: "Praktika",
+                nav_projects: "Projekte",
+                nav_skills: "Fähigkeiten",
+                nav_contact: "Kontakt",
+                nav_cv: "Lebenslauf herunterladen",
+                hero_title: "Absolvent im Digitalen Marketing | Begeistert von SEO, Content-Erstellung & Social-Media-Strategie",
+                hero_tagline: "\"Kreative Ideen durch datengesteuertes Marketing zum Leben erwecken.\"",
+                hero_cta_work: "Meine Arbeit ansehen",
+                hero_cta_contact: "Kontakt aufnehmen",
+                internships_title: "Praktika",
+                internship1_title: "CIEMG Ingenieur- und Gutachterbüro",
+                internship1_desc: `<strong class="block mb-2">Rolle:</strong> Praktikant — Unterstützung bei der Versicherungsexpertise<br><strong class="block mt-4 mb-2">Aufgaben:</strong><ul><li>Teilnahme an Außeneinsätzen mit erfahrenen Gutachtern zur Schadensbewertung.</li><li>Verfassen detaillierter Gutachten für Privat- und Firmenkunden.</li><li>Mitwirkung bei der Vorbereitung von Unterlagen für Versicherungsgesellschaften.</li><li>Unterstützung bei der Aktualisierung von Fallakten gemäß den gesetzlichen Anforderungen.</li></ul><strong class="block mt-4 mb-2">Mehrwert:</strong> Stärkung der Fähigkeiten in analytischem Denken, präzisem Schreiben und professioneller Kommunikation.`,
+                internship2_title: "Barid Al Maghrib",
+                internship2_desc: `<strong class="block mb-2">Rolle:</strong> Praktikant — Unterstützung im Digitalmarketing und Kommunikation<br><strong class="block mt-4 mb-2">Aufgaben:</strong><ul><li>Miterstellung und Skripten von Episoden für die Lernserie „Le Professeur“.</li><li>Gestaltung von Social-Media-Inhalten im Einklang mit der neuen visuellen Identität.</li><li>Anpassung der neuen grafischen Charta für Visitenkarten und Flyer.</li><li>Vorschläge zur Verbesserung der digitalen Customer Journey.</li></ul><strong class="block mt-4 mb-2">Mehrwert:</strong> Verbesserung der kreativen Schreib- und Storytelling-Fähigkeiten für digitale Formate.`,
+                internship3_title: "Ouazni et Fils S.A.R.L",
+                internship3_desc: `<strong class="block mb-2">Rolle:</strong> Praktikant — Assistenz im Vertrieb und Kundenservice<br><strong class="block mt-4 mb-2">Aufgaben:</strong><ul><li>Beratung von Kunden bei der Auswahl passender Fliesen und Sanitärausstattung.</li><li>Mithilfe bei der Pflege der Showroom-Präsentation zur Hervorhebung von Produkten.</li><li>Beobachtung und Erlernen von Verhandlungstechniken von erfahrenen Mitarbeitern.</li><li>Bereitstellung grundlegender Informationen zu Produkteigenschaften und -pflege.</li></ul><strong class="block mt-4 mb-2">Mehrwert:</strong> Entwicklung zwischenmenschlicher und Kundenservice-Fähigkeiten mit unterschiedlichen Kunden.`,
+                projects_title: "Highlight-Projekt",
+                project_title: "Barid Al Maghrib - Le Professeur",
+                project_desc: "Eine digitale Bildungsreihe zur Vereinfachung der Postdienste für Kunden. Meine Rolle: Skripterstellung, Konzeptanpassung und visuelle Koordination.",
+                skills_title: "Fähigkeiten & Sprachen",
+                skills_digital: `<h3 class="text-xl font-semibold text-slate-800 mb-4">Digitales Marketing</h3><ul class="space-y-3 text-slate-600 skills-list"><li><i data-lucide="megaphone" class="w-4 h-4"></i>Erstellung von Social-Media-Inhalten</li><li><i data-lucide="file-text" class="w-4 h-4"></i>Drehbuchschreiben für digitale Kampagnen</li><li><i data-lucide="search" class="w-4 h-4"></i>SEO-Grundlagen (On-Page, Keywords)</li><li><i data-lucide="bar-chart-2" class="w-4 h-4"></i>Google Analytics & Social Insights</li><li><i data-lucide="gem" class="w-4 h-4"></i>Anpassung der Markenidentität</li></ul>`,
+                skills_professional: `<h3 class="text-xl font-semibold text-slate-800 mb-4">Professionelle Fähigkeiten</h3><ul class="space-y-3 text-slate-600 skills-list"><li><i data-lucide="users" class="w-4 h-4"></i>Kundenberatung & Service</li><li><i data-lucide="message-circle" class="w-4 h-4"></i>B2B & B2C Kommunikation</li><li><i data-lucide="users-2" class="w-4 h-4"></i>Team-Zusammenarbeit</li><li><i data-lucide="brain-circuit" class="w-4 h-4"></i>Analytisches Denken</li><li><i data-lucide="pen-square" class="w-4 h-4"></i>Technisches Schreiben</li><li><i data-lucide="lightbulb" class="w-4 h-4"></i>Kreative Problemlösung</li></ul>`,
+                skills_software: `<h3 class="text-xl font-semibold text-slate-800 mb-4">Tools & Software</h3><ul class="space-y-3 text-slate-600 skills-list"><li><i data-lucide="file-spreadsheet" class="w-4 h-4"></i>Microsoft Office Suite</li><li><i data-lucide="palette" class="w-4 h-4"></i>Canva</li><li><i data-lucide="layout-template" class="w-4 h-4"></i>WordPress (Grundlagen)</li><li><i data-lucide="figma" class="w-4 h-4"></i>Figma (Grundlagen)</li><li><i data-lucide="database" class="w-4 h-4"></i>NVivo (Grundlagen)</li><li><i data-lucide="image" class="w-4 h-4"></i>Photoshop (Grundlagen)</li><li><i data-lucide="camera" class="w-4 h-4"></i>Lightroom (Grundlagen)</li><li><i data-lucide="video" class="w-4 h-4"></i>CapCut (Grundlagen)</li></ul>`,
+                skills_languages: `<h3 class="text-xl font-semibold text-slate-800 mb-4 text-center">Sprachen</h3><div class="flex justify-center gap-6 md:gap-8 text-center"><div><p class="font-bold text-lg text-accent">Arabisch</p><p class="text-sm text-slate-500">C2</p></div><div><p class="font-bold text-lg text-accent">Französisch</p><p class="text-sm text-slate-500">C1</p></div><div><p class="font-bold text-lg text-accent">Englisch</p><p class="text-sm text-slate-500">C1</p></div><div><p class="font-bold text-lg text-accent">Deutsch</p><p class="text-sm text-slate-500">B2</p></div></div>`,
+                contact_title: "Kontakt aufnehmen",
+                contact_subtitle: "Haben Sie ein Projekt im Sinn oder möchten Sie sich einfach nur vernetzen? Senden Sie mir gerne eine Nachricht.",
+                form_name: "Name",
+                form_email: "E-Mail",
+                form_message: "Nachricht",
+                form_submit: "Nachricht senden",
+            }
+        };
+
+        // --- SCRIPT LOGIC ---
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Lucide icons
+            lucide.createIcons();
+
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // --- Language Switcher ---
+            let currentLang = 'en'; // Default language
+
+            function setLanguage(lang) {
+                currentLang = lang;
+                document.documentElement.lang = lang;
+                
+                // Update all text content
+                const elements = document.querySelectorAll('[data-lang-key]');
+                elements.forEach(el => {
+                    const key = el.getAttribute('data-lang-key');
+                    if (translations[lang] && translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+
+                // Re-initialize icons after innerHTML change
+                lucide.createIcons();
+
+                // Update active class on language switchers
+                const allLangButtons = document.querySelectorAll('.lang-switch');
+                allLangButtons.forEach(btn => {
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+
+            // Add event listeners to all language buttons
+            const allLangButtons = document.querySelectorAll('.lang-switch');
+            allLangButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.getAttribute('data-lang');
+                    setLanguage(lang);
+                });
+            });
+            
+            // Set initial language
+            setLanguage(currentLang);
+
+            // --- Scroll Animations ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        
+                        // Stagger children if any
+                        const staggerChildren = entry.target.querySelectorAll('.stagger-animation');
+                        staggerChildren.forEach((child, index) => {
+                            const delay = child.style.getPropertyValue('--stagger-delay');
+                            setTimeout(() => {
+                                child.classList.add('is-visible');
+                            }, delay ? parseInt(delay) : index * 150);
+                        });
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // --- Close mobile menu on link click ---
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                         mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
